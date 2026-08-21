@@ -1,0 +1,53 @@
+{
+  "name": "@fathomcli/fathom",
+  "version": "0.1.0",
+  "description": "Turn any repository into clean release notes, a living documentation site, and a dependency/license SBOM — in one command.",
+  "type": "module",
+  "bin": {
+    "fathom": "./bin/fathom.js"
+  },
+  "main": "./src/index.js",
+  "exports": {
+    ".": "./src/index.js",
+    "./cli": "./src/cli.js"
+  },
+  "files": [
+    "bin",
+    "src",
+    "LICENSE",
+    "README.md"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "test": "node --test",
+    "build:site": "node scripts/build-site.js",
+    "start": "node bin/fathom.js"
+  },
+  "keywords": [
+    "changelog",
+    "release-notes",
+    "sbom",
+    "license",
+    "cyclonedx",
+    "supply-chain",
+    "documentation",
+    "docs",
+    "semantic-release",
+    "cli"
+  ],
+  "license": "MIT",
+  "author": {
+    "name": "Fathom Contributors",
+    "email": "hello@fathomcli.dev"
+  },
+  "homepage": "https://fathomcli.dev",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fathomcli/fathom.git"
+  },
+  "bugs": {
+    "url": "https://github.com/fathomcli/fathom/issues"
+  }
+}

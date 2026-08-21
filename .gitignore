@@ -1,0 +1,10 @@
+node_modules/
+fathom-dist/
+*.log
+.fathom/
+coverage/
+dist/
+.DS_Store
+*.tsbuildinfo
+dist-docs/
+demo/
