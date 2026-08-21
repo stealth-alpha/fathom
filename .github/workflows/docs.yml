@@ -24,8 +24,8 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 20
-      - name: Install Fathom
-        run: npm install --global @fathomcli/fathom
+      - name: Install Fathom from source
+        run: npm install --global .
       - name: Generate docs, changelog and SBOM
         run: fathom build --out site
       - uses: actions/upload-pages-artifact@v3
