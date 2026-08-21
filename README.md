@@ -165,6 +165,17 @@ Keep your changelog fresh with the pre-commit hook:
       pass_filenames: false
 ```
 
+## Dogfooding
+
+Fathom documents itself. Every push to `main` regenerates this repo's changelog,
+docs site and SBOM with Fathom itself (see `.github/workflows/docs.yml`):
+
+- **Live docs site:** [stealth-alpha.github.io/fathom](https://stealth-alpha.github.io/fathom/)
+- **[CHANGELOG.md](CHANGELOG.md)** — release notes generated from git history
+- **[sbom.json](sbom.json)** — CycloneDX bill of materials (it lists zero components:
+  Fathom has zero runtime dependencies)
+- **[LICENSES.md](LICENSES.md)** — the human-readable license report
+
 ## Pro (open-core)
 
 The core CLI is free and open source under MIT. `Fathom Pro` adds the things teams
