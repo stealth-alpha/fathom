@@ -8,7 +8,7 @@ a dependency/license bill of materials — in one command.**
 Zero runtime dependencies · Works offline · Open-core (MIT)
 
 [![Node](https://img.shields.io/badge/node-%3E%3D18-43853d?logo=node.js&logoColor=white)](https://nodejs.org)
-[![npm](https://img.shields.io/npm/v/@fathomcli/fathom)](https://www.npmjs.com/package/@fathomcli/fathom)
+[![npm](https://img.shields.io/npm/v/fathomcli)](https://www.npmjs.com/package/fathomcli)
 [![license](https://img.shields.io/badge/license-MIT-blue)](LICENSE)
 
 </div>
@@ -44,12 +44,12 @@ they never drift from the code. A README becomes a landing page, your `docs/`
 folder becomes the guide, and source symbols become a searchable API index.
 
 **Single binary, zero setup.** No runtime dependencies, no config ceremony, no
-network calls. One `npm i -g @fathomcli/fathom` and you're shipping.
+network calls. One `npm i -g fathomcli` and you're shipping.
 
 ## Installation
 
 ```bash
-npm install --global @fathomcli/fathom
+npm install --global fathomcli
 ```
 
 Requires Node 18+ and `git` on your `PATH`. Works on macOS, Linux and Windows.
@@ -145,7 +145,7 @@ Add the GitHub Action in [`docs.yml`](.github/workflows/docs.yml) to regenerate
 your docs, changelog and SBOM on every push and publish them to GitHub Pages:
 
 ```yaml
-- run: npm install --global @fathomcli/fathom
+- run: npm install --global fathomcli
 - run: fathom build --out site
 - uses: actions/upload-pages-artifact@v3
   with: { path: site }

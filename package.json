@@ -1,5 +1,5 @@
 {
-  "name": "@fathomcli/fathom",
+  "name": "fathomcli",
   "version": "0.1.0",
   "description": "Turn any repository into clean release notes, a living documentation site, and a dependency/license SBOM — in one command.",
   "type": "module",

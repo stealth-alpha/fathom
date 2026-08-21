@@ -12,7 +12,7 @@ first run.
 Install the CLI globally:
 
 ```bash
-npm install --global @fathomcli/fathom
+npm install --global fathomcli
 ```
 
 ## 1. Initialise

@@ -37,7 +37,7 @@ holding basic functionality hostage.
 
 ## Distribution levers
 
-- **npm** — `npm i -g @fathomcli/fathom` is the top-of-funnel.
+- **npm** — `npm i -g fathomcli` is the top-of-funnel.
 - **GitHub** — the repo, Stars, Discussions and a clean README.
 - **Release audit** — position against `npm audit` + `cyclonedx` + license tools.
 - **Docs-as-a-product** — the generated site is a demo of the tool.
