@@ -24,7 +24,7 @@ Position one line:
 
 ## 2. Ship it publicly
 
-- Publish to npm as `fathomcli` and to a GitHub repo. Add a CI badge.
+- Publish to npm as `@stealth-alpha/fathom` and to a GitHub repo. Add a CI badge.
 - Generate the Fathom docs site for the Fathom repo and link it from the README
   (dogfooding).
 - Add a `CHANGELOG.md` and an SBOM to the repo. Practice what you preach.

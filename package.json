@@ -39,15 +39,14 @@
   ],
   "license": "MIT",
   "author": {
-    "name": "Fathom Contributors",
-    "email": "hello@fathomcli.dev"
+    "name": "Fathom Contributors"
   },
-  "homepage": "https://fathomcli.dev",
+  "homepage": "https://stealth-alpha.github.io/fathom/",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/fathomcli/fathom.git"
+    "url": "git+https://github.com/stealth-alpha/fathom.git"
   },
   "bugs": {
-    "url": "https://github.com/fathomcli/fathom/issues"
+    "url": "https://github.com/stealth-alpha/fathom/issues"
   }
 }

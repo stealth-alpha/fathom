@@ -8,6 +8,8 @@ a dependency/license bill of materials — in one command.**
 Zero runtime dependencies · Works offline · Open-core (MIT)
 
 [![Node](https://img.shields.io/badge/node-%3E%3D18-43853d?logo=node.js&logoColor=white)](https://nodejs.org)
+[![Test](https://github.com/stealth-alpha/fathom/actions/workflows/test.yml/badge.svg)](https://github.com/stealth-alpha/fathom/actions/workflows/test.yml)
+[![docs](https://github.com/stealth-alpha/fathom/actions/workflows/docs.yml/badge.svg)](https://stealth-alpha.github.io/fathom/)
 [![npm](https://img.shields.io/npm/v/@stealth-alpha/fathom)](https://www.npmjs.com/package/@stealth-alpha/fathom)
 [![license](https://img.shields.io/badge/license-MIT-blue)](LICENSE)
 
