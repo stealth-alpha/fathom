@@ -47,9 +47,18 @@ export function renderInline(text) {
   src = src.replace(/(^|[^\w])_([^_]+)_(?=[^\w]|$)/g, "$1<em>$2</em>");
   src = src.replace(/~~([^~]+)~~/g, "<del>$1</del>");
 
-  const restore = (out) =>
-    out.replace(/\u0000(\d+)\u0000/g, (_, i) => tokens[Number(i)] ?? "");
-  return restore(src);
+  // Restore placeholders to a fixpoint so nested tokens (e.g. an image inside a
+  // link) are resolved correctly.
+  let restored = src;
+  const PLACEHOLDER = /\u0000(\d+)\u0000/g;
+  while (PLACEHOLDER.test(restored)) {
+    PLACEHOLDER.lastIndex = 0;
+    restored = restored.replace(
+      PLACEHOLDER,
+      (_, i) => tokens[Number(i)] ?? ""
+    );
+  }
+  return restored;
 }
 
 function renderList(lines, i, isOrdered) {

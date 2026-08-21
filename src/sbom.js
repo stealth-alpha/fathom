@@ -366,22 +366,22 @@ function uuidV4() {
   return randomUUID();
 }
 
-export function writeSbomFiles(cwd, config) {
+export function writeSbomFiles(cwd, config, outDir = null) {
   const sbom = buildSbom(cwd, config);
-  const outDir = path.join(cwd, config.build?.output || "fathom-dist");
+  const output = outDir || path.join(cwd, config.build?.output || "fathom-dist");
   const files = [];
   const formats = config.sbom?.formats || ["cyclonedx", "md"];
   for (const format of formats) {
     if (format === "cyclonedx" || format === "json") {
-      const file = path.join(outDir, "sbom.json");
+      const file = path.join(output, "sbom.json");
       writeFile(file, JSON.stringify(sbom, null, 2));
       files.push(file);
     } else if (format === "spdx") {
-      const file = path.join(outDir, "sbom.spdx");
+      const file = path.join(output, "sbom.spdx");
       writeFile(file, formatSpdx(sbom));
       files.push(file);
     } else if (format === "md") {
-      const file = path.join(outDir, "LICENSES.md");
+      const file = path.join(output, "LICENSES.md");
       writeFile(file, formatLicensesMarkdown(sbom, config));
       files.push(file);
     }

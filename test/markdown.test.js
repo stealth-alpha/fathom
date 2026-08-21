@@ -53,6 +53,13 @@ test("inline formatting works", () => {
   assert.equal(renderInline("[link](https://x.dev)"), '<a href="https://x.dev">link</a>');
 });
 
+test("renders an image wrapped in a link (badge) without leftover placeholders", () => {
+  const html = renderMarkdown("[![Node](https://img.shields.io/badge/node-43853d)](https://nodejs.org)");
+  assert.ok(!html.includes("\u0000"), "no NUL placeholder should remain");
+  assert.match(html, /<a href="https:\/\/nodejs\.org">/);
+  assert.match(html, /<img src="https:\/\/img\.shields\.io\/badge\/node-43853d" alt="Node">/);
+});
+
 test("extractHeadings returns slug + level", () => {
   const headings = extractHeadings("# One\n\n## Two\n\n### Three");
   assert.deepEqual(headings, [

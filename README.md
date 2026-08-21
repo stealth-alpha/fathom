@@ -139,6 +139,30 @@ fields:
 
 Run `fathom help` for all flags.
 
+## CI & pre-commit
+
+Add the GitHub Action in [`docs.yml`](.github/workflows/docs.yml) to regenerate
+your docs, changelog and SBOM on every push and publish them to GitHub Pages:
+
+```yaml
+- run: npm install --global @fathomcli/fathom
+- run: fathom build --out site
+- uses: actions/upload-pages-artifact@v3
+  with: { path: site }
+```
+
+Keep your changelog fresh with the pre-commit hook:
+
+```yaml
+# .pre-commit-config.yaml
+- repo: local
+  hooks:
+    - id: fathom
+      entry: fathom changelog --write
+      language: node
+      pass_filenames: false
+```
+
 ## Pro (open-core)
 
 The core CLI is free and open source under MIT. `Fathom Pro` adds the things teams

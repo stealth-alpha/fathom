@@ -1,0 +1,7 @@
+- id: fathom
+  name: fathom
+  description: Generate a changelog from git history.
+  entry: fathom changelog --write
+  language: node
+  pass_filenames: false
+  always_run: true

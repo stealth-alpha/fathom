@@ -1,0 +1,53 @@
+{
+  "name": "Fathom",
+  "version": null,
+  "changelog": {
+    "file": "CHANGELOG.md",
+    "format": "md",
+    "unreleased": true,
+    "groups": {
+      "feat": "Features",
+      "fix": "Bug Fixes",
+      "docs": "Documentation",
+      "style": "Styling",
+      "refactor": "Refactoring",
+      "perf": "Performance",
+      "test": "Tests",
+      "build": "Build System",
+      "ci": "Continuous Integration",
+      "chore": "Miscellaneous",
+      "revert": "Reverts",
+      "breaking": "Breaking Changes"
+    }
+  },
+  "sbom": {
+    "formats": [
+      "cyclonedx",
+      "md"
+    ],
+    "policy": {
+      "blockLicenses": [
+        "GPL-3.0",
+        "AGPL-3.0"
+      ],
+      "warnLicenses": [
+        "GPL-2.0",
+        "MPL-2.0",
+        "EUPL-1.2"
+      ]
+    }
+  },
+  "docs": {
+    "title": "Fathom Docs",
+    "theme": "dark",
+    "primary": "#6366f1",
+    "source": [
+      "."
+    ],
+    "exclude": [],
+    "include": null
+  },
+  "build": {
+    "output": "fathom-dist"
+  }
+}

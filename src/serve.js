@@ -1,7 +1,6 @@
 import http from "node:http";
 import fs from "node:fs";
 import path from "node:path";
-import { log, cyan, info } from "./util.js";
 
 const MIME = {
   ".html": "text/html; charset=utf-8",

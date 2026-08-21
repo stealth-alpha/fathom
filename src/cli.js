@@ -9,7 +9,6 @@ import {
   green,
   cyan,
   yellow,
-  magenta,
   bold,
   dim,
 } from "./util.js";
@@ -215,7 +214,7 @@ async function cmdBuild(flags) {
 
   let sbom = null;
   if (config.sbom?.formats?.length) {
-    const { sbom: model } = writeSbomFiles(cwd, config);
+    const { sbom: model } = writeSbomFiles(cwd, config, outDir);
     sbom = model;
     success(`${yellow("SBOM")} → ${cyan(path.join(outDir, "sbom.json"))}`);
   }
@@ -227,6 +226,19 @@ async function cmdBuild(flags) {
     extras: { changelog, sbom },
   });
   success(`Docs site → ${cyan(outDir)}`);
+  if (flags.json) {
+    log(
+      JSON.stringify({
+        output: outDir,
+        changelog: changelog ? changelog.commitCount : 0,
+        components: sbom ? sbom.components.length : 0,
+        violations: sbom ? sbom.summary.violations.length : 0,
+        pages: docs.pages.length,
+        files: docs.files,
+        symbols: docs.symbols,
+      })
+    );
+  }
   info(
     `${docs.pages.length} pages · ${docs.files} files · ${docs.symbols} symbols · ${
       changelog ? changelog.commitCount + " commits" : "0 commits"

@@ -8,3 +8,5 @@ dist/
 *.tsbuildinfo
 dist-docs/
 demo/
+*.tgz
+dist-docs/
