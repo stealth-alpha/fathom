@@ -1,0 +1,26 @@
+{
+  "bomFormat": "CycloneDX",
+  "specVersion": "1.5",
+  "version": 1,
+  "serialNumber": "urn:uuid:c8756606-0384-40ff-b357-0da5947a6d44",
+  "metadata": {
+    "tools": [
+      {
+        "vendor": "fathom",
+        "name": "fathom-cli",
+        "version": "0.1.0"
+      }
+    ],
+    "component": {
+      "type": "application",
+      "name": "Fathom",
+      "bomRef": "fathom"
+    }
+  },
+  "components": [],
+  "summary": {
+    "components": 0,
+    "licenses": [],
+    "violations": []
+  }
+}

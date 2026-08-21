@@ -7,7 +7,7 @@ export function formatSpdx(sbom) {
     "DataLicense: CC0-1.0",
     "SPDXID: SPDXRef-DOCUMENT",
     `DocumentName: ${sbom.metadata.component.name}`,
-    "DocumentNamespace: https://fathomcli.dev/spdx/" +
+    "DocumentNamespace: https://github.com/stealth-alpha/fathom/spdx/" +
       (sbom.serialNumber || "document"),
     `Creator: Tool: fathom-cli-0.1.0`,
     "Created: " + new Date().toISOString(),
