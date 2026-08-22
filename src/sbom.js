@@ -2,6 +2,7 @@ import path from "node:path";
 import { randomUUID } from "node:crypto";
 import { readIfExists, readJson, writeFile } from "./util.js";
 import { formatSpdx, formatLicensesMarkdown } from "./sbom-format.js";
+import { VERSION } from "./version.js";
 
 /**
  * Supply-chain inventory: discover dependency manifests, enrich each component
@@ -332,7 +333,7 @@ export function buildSbom(cwd = process.cwd(), config = {}) {
     version: 1,
     serialNumber: `urn:uuid:${uuidV4()}`,
     metadata: {
-      tools: [{ vendor: "fathom", name: "fathom-cli", version: "0.1.0" }],
+      tools: [{ vendor: "fathom", name: "fathom-cli", version: VERSION }],
       component: {
         type: "application",
         name: config.name || path.basename(cwd),

@@ -12,6 +12,7 @@ import {
   bold,
   dim,
 } from "./util.js";
+import { VERSION } from "./version.js";
 import { loadConfig, configExists, configFileName, DEFAULT_CONFIG } from "./config.js";
 import { isGitRepo, getProjectName } from "./git.js";
 import { buildChangelog } from "./changelog.js";
@@ -23,8 +24,6 @@ import {
 import { buildSbom, writeSbomFiles } from "./sbom.js";
 import { buildDocsSite } from "./docs.js";
 import { createStaticServer, listen } from "./serve.js";
-
-const VERSION = "0.1.0";
 
 function parseArgs(argv) {
   const flags = {};

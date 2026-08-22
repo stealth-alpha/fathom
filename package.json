@@ -1,6 +1,6 @@
 {
   "name": "@stealth-alpha/fathom",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Turn any repository into clean release notes, a living documentation site, and a dependency/license SBOM — in one command.",
   "type": "module",
   "bin": {
