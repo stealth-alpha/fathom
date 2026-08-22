@@ -92,3 +92,22 @@ test("changelog formats produce expected output", () => {
     removeDir(dir);
   }
 });
+
+test("formatChangelogMarkdown prefixes only numeric refs (#42 vs GH-7/JIRA-12)", () => {
+  const mk = (subject) =>
+    parseCommit({ subject, body: "", hash: "a", short: "a", author: "A", email: "a@a", date: "2026-01-01" });
+  const items = [mk("fix(api): handle null user GH-7"), mk("feat: add pagination (#42)"), mk("chore: sync ticket JIRA-12")];
+  const model = {
+    name: "t",
+    version: "0.1.0",
+    commitCount: items.length,
+    stats: { features: 1, fixes: 1, breaking: 0 },
+    sections: [{ group: "Features", items }, { group: "Miscellaneous", items: [] }],
+  };
+  const md = formatChangelogMarkdown(model, { header: false });
+  assert.match(md, /closes GH-7/);
+  assert.doesNotMatch(md, /#GH-7/);
+  assert.match(md, /closes #42/);
+  assert.match(md, /closes JIRA-12/);
+  assert.doesNotMatch(md, /#JIRA-12/);
+});

@@ -2,6 +2,15 @@ import { escapeHtml, capitalize } from "./util.js";
 import { summarize } from "./changelog.js";
 
 /**
+ * Render one issue reference. Numeric refs become GitHub-style `#42`;
+ * project-prefixed refs ("GH-7", "JIRA-12") are already link-shaped and
+ * must NOT gain a `#` ("#GH-7" renders as broken literal text).
+ */
+export function formatRef(ref) {
+  return /^\d+$/.test(ref) ? `#${ref}` : String(ref);
+}
+
+/**
  * Render a changelog model as a Keep-a-Changelog flavoured Markdown string.
  */
 export function formatChangelogMarkdown(model, opts = {}) {
@@ -30,7 +39,7 @@ export function formatChangelogMarkdown(model, opts = {}) {
     lines.push(`### ${section.group}`, "");
     for (const entry of section.items) {
       const taskLink = entry.refs.length
-        ? ` — closes ${entry.refs.map((r) => `#${r}`).join(", ")}`
+        ? ` — closes ${entry.refs.map(formatRef).join(", ")}`
         : "";
       const byline = entry.author ? ` by @${entry.author.replace(/\s+/g, "-")}` : "";
       lines.push(`- **${escape(entry.description)}**${byline}${taskLink}`);
@@ -57,7 +66,7 @@ export function formatChangelogHtml(model) {
         .map((entry) => {
           const refs = entry.refs.length
             ? `<span class="refs">${entry.refs
-                .map((r) => `<code>#${escapeHtml(r)}</code>`)
+                .map((r) => `<code>${escapeHtml(formatRef(r))}</code>`)
                 .join(" ")}</span>`
             : "";
           return (
