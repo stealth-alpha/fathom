@@ -194,3 +194,7 @@ npm test
 ## License
 
 [MIT](LICENSE)
+
+---
+
+Part of the [stealth-alpha toolkit](https://stealth-alpha.github.io/toolkit/) — eight zero-dependency CLIs for release automation, agent security, and repo hygiene.
