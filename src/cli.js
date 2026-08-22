@@ -13,6 +13,7 @@ import {
   dim,
 } from "./util.js";
 import { VERSION } from "./version.js";
+import { activate, currentTier, loadLicense, maskKey } from "./license.js";
 import { loadConfig, configExists, configFileName, DEFAULT_CONFIG } from "./config.js";
 import { isGitRepo, getProjectName } from "./git.js";
 import { buildChangelog } from "./changelog.js";
@@ -51,7 +52,13 @@ function parseArgs(argv) {
 }
 
 function printVersion() {
-  log(VERSION);
+  log(`${VERSION}`);
+  const tier = currentTier();
+  log(
+    tier === "pro"
+      ? dim(`tier: pro (license ${maskKey(loadLicense()?.license_key)})`)
+      : dim("tier: free — activate Pro with: fathom activate <license-key>")
+  );
 }
 
 function printHelp() {
@@ -67,7 +74,8 @@ ${bold("Commands")}
   docs                  Build a static documentation site
   build                 Run changelog + sbom + docs into a single output
   serve                 Serve the generated build output
-  version               Print the Fathom version
+  activate              Activate a Fathom Pro license key
+  version               Print the Fathom version and license tier
   help                  Show this help
 
 ${bold("Options")}
@@ -264,10 +272,37 @@ async function cmdServe(flags) {
   log(dim("Press Ctrl+C to stop."));
 }
 
+async function cmdActivate(flags) {
+  const key = flags._dir ?? flags.cwd;
+  if (!key) {
+    error("activate requires a license key: fathom activate <license-key>");
+    info(dim("Buy Fathom Pro at https://ektorsot.gumroad.com/l/ujksed"));
+    process.exitCode = 1;
+    return;
+  }
+  info("Verifying license with Gumroad…");
+  try {
+    const { record, file } = await activate(key);
+    if (!record.valid) {
+      error(record.message || "License is not valid.");
+      info(dim("Keys look like XXXX-XXXX-XXXX-XXXX-XXXX and are issued per purchase."));
+      process.exitCode = 1;
+      return;
+    }
+    success(`License verified — Fathom Pro activated for ${record.email || "your account"}`);
+    log(dim(`Saved to ${file}`));
+    info(dim("Pro features ship in an upcoming release; your tier is already recorded."));
+  } catch (err) {
+    error(err.message);
+    process.exitCode = 1;
+  }
+}
+
 export async function main(argv) {
   const { flags, positional } = parseArgs(argv);
   if (flags.debug) process.env.FATHOM_DEBUG = "1";
-  const command = positional[0] || "help";
+  const command = positional[0] || (flags.version ? "version" : "help");
+  flags._dir = positional[1];
   try {
     switch (command) {
       case "init":
@@ -287,6 +322,9 @@ export async function main(argv) {
         break;
       case "serve":
         await cmdServe(flags);
+        break;
+      case "activate":
+        await cmdActivate(flags);
         break;
       case "version":
       case "--version":
