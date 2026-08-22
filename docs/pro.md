@@ -17,6 +17,19 @@ more than one repository.
 
 See [`PRICING.md`](../PRICING.md) for the current model.
 
+## Activating a license
+
+Bought Fathom Pro? Activate your license key locally:
+
+```bash
+fathom activate XXXXXXXX-XXXXXXXX-XXXXXXXX-XXXXXXXX
+```
+
+The key is verified against Gumroad and stored in
+`~/.config/fathom/license.json`. `fathom --version` shows your current tier.
+Pro features ship in an upcoming release — activating now reserves your tier;
+nothing is gated in the free CLI.
+
 ## Why open-core
 
 The core tool is genuinely useful on its own, and it's the best form of
